@@ -1,9 +1,37 @@
 <?php
+    
     header('Access-Control-Allow-Origin: *');
-    header('');
-    header('');
-    header('');
-    header('');
-    header('');
+    header('Access-Control-Allow-Methods:GET,POST,OPTIONS');
+    header('Access-Control-Allow-Headers:Origin,Authorization, Content-Type, X-Requested-With, Accept');
+    header('Access-Control-Allow-Credentials:false');
+    header('Access-Control-Max-Age: -1');
+    header('Content-type: text/html; charset=utf-8');
+
+    $response = [];
+    $time = time();
+
+    $localhost = 'localhost';
+    $dbname = 'ads_dbase';
+    $name = 'root';
+    $password = 'root';
+
+    try{
+        $pdo = new PDO('mysql:host=' . $localhost . ';dbname=' . $dbname, $name, $password);
+    }catch(PDOEXception $e){
+        'Error!:' . $e ->getmessage();
+    }
+
+    if (isset($_GET['api'])){
+        if(isset($_GET['ad'])){
+            include_once 'ad.php';
+        }
+    }else{
+
+    }
 
     
+    function apiResponse($array){
+        $pdp = 0;
+        header('Content-Type:aplication/json; charset=utf-8');
+        echo json_encode($array);
+    }

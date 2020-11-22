@@ -6,7 +6,8 @@ RewriteBase /
 
 RewriteRule ^api$ /?api [L]
 
-RewriteRule ^api/ad/add /?api&ad&add [L]
+RewriteRule ^api/ad$ /?api&ad [L]
+RewriteRule ^api/ad/add$ /?api&ad&add [L]
 
 
 
