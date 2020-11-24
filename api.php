@@ -19,17 +19,20 @@
         $pdo = new PDO('mysql:host=' . $localhost . ';dbname=' . $dbname, $name, $password);
     }catch(PDOEXception $e){
         'Error!:' . $e ->getmessage();
+        die();
     }
 
     if (isset($_GET['api'])){
         if(isset($_GET['ad'])){
             include_once 'ad.php';
         }
+        else if(isset($_GET['ads'])){
+            include_once 'ads.php';
+        }
     }else{
 
     }
 
-    
     function apiResponse($array){
         $pdp = 0;
         header('Content-Type:aplication/json; charset=utf-8');
