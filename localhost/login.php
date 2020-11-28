@@ -1,10 +1,8 @@
 <?php
 
 if(isset($_GET['action'])){
-    echo 1;
+    $query=$pdo->("SELECT * FROM users WHERE user_email= '{$user_email} ' ") 
 }else{
-
-
 
 echo '
 <!DOCTYPE html>
