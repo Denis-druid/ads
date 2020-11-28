@@ -6,9 +6,13 @@ RewriteBase /
 
 RewriteRule ^api$ /?api [L]
 
-RewriteRule ^api/ad$ /?api&ad [L]
 RewriteRule ^api/ads$ /?api&ads [L]
+
 RewriteRule ^api/ad/add$ /?api&ad&add [L]
+
+RewriteRule ^api/ad/([0-9]{1,})$ /?api&ad=$1 [L]
+
+RewriteRule ^api/ad/proverka$ /?api&ad&proverka [L]
 
 
 

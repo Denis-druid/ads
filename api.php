@@ -34,7 +34,7 @@
     };
 
     function apiResponse($array){
-        $pdp = 0;
+        $pdo = 0;
         header('Content-Type:aplication/json; charset=utf-8');
         echo json_encode($array);
     }

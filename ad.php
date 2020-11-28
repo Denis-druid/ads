@@ -1,6 +1,70 @@
 <?php
-    if(isset($_GET['ad']) && isset($_GET['add'])){
+    
+    if(isset($_get['ad']) && isset($_get['proverka'])){
+        if(isset($_POST['ad_id']) && isset($_POST['ad_key'])){
+            $ad_id = $_POST['ad_id'];
+            $ad_key = $_POST['ad_key'];
+            $query = $pdo -> query("SELECT 
+            ads.ad_id, 
+                    ads.tytle_ad,
+                    ads.info_ad,
+                    ads.contact_name,
+                    ads.contact_phone,
+                    ads.date_end
+            FROM ads WHERE ad_id = '{$ad_id}'");
+            
+            $ad = $query ->fetchAll(PDO::FETCH_ASSOC);
 
+            if ($ad){
+                foreach($ad as $data){
+                    $ad_array[] = $ad;
+                }
+                
+            }else{
+                http_response_code(422);
+                echo 'Нету';
+            }
+            
+            
+
+        }else{
+
+        }
+
+    }
+
+    else if(isset($_GET['ad']) && ($_GET['ad'] > 0)){
+        $id = $_GET['ad'];
+        $query = $pdo -> query("SELECT 
+        
+        ads.ad_id, 
+                ads.tytle_ad,
+                ads.info_ad,
+                ads.contact_name,
+                ads.contact_phone,
+                ads.date_end
+        FROM ads WHERE ad_id = '{$id}'");
+
+        $ad = $query->fetchALL(PDO::FETCH_ASSOC);
+
+        if ($ad){
+            foreach($ad as $data){
+
+                $ad_array[] = $data;
+
+            }
+        }else{
+            $ad_array = [];
+        };
+
+        http_response_code(200);
+
+        $response['data'] = $ad_array;
+
+        // apiResponse($response);
+    }
+    else if(isset($_GET['ad']) && isset($_GET['add'])){
+      
         if (isset($_POST['tytle_ad']) && 
             isset($_POST['info_ad']) &&
             isset($_POST['contact_name']) &&
@@ -65,5 +129,9 @@
             http_response_code(422);
         }
      
-    };
+    }else{
+        http_response_code(404);
+
+        exit;
+    }
     apiResponse($response);
